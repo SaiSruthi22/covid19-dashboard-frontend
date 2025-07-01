@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Interactive Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>COVID-19 Data Dashboard</h1>
+        <p>Interactive visualization of global pandemic data</p>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="country-select">Select Country:</label>
+                <select id="country-select">
+                    <option value="global">Global</option>
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="metric-select">Select Metric:</label>
+                <select id="metric-select">
+                    <option value="cases">Total Cases</option>
+                    <option value="deaths">Total Deaths</option>
+                    <option value="recovered">Total Recovered</option>
+                    <option value="active">Active Cases</option>
+                    <option value="casesPer100k">Cases per 100k</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="date-range">Date Range:</label>
+                <input type="date" id="start-date">
+                <span>to</span>
+                <input type="date" id="end-date">
+            </div>
+            <button id="update-btn">Update Dashboard</button>
+        </div>
+
+        <div class="dashboard">
+            <div class="card summary-card">
+                <h2>Global Summary</h2>
+                <div class="summary-stats">
+                    <div class="stat-box">
+                        <h3>Total Cases</h3>
+                        <p id="total-cases">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Deaths</h3>
+                        <p id="total-deaths">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Recovered</h3>
+                        <p id="total-recovered">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Active Cases</h3>
+                        <p id="active-cases">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h2>Cases Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="time-series-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h2>Top Countries</h2>
+                <div class="chart-container">
+                    <div id="top-countries-chart"></div>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h2>Vaccination Progress</h2>
+                <div class="chart-container">
+                    <canvas id="vaccination-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card map-card">
+                <h2>Global Heatmap</h2>
+                <div class="chart-container">
+                    <div id="heatmap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Data Source: Johns Hopkins University CSSE & Our World in Data</p>
+        <p>Last Updated: <span id="last-updated">Loading...</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
